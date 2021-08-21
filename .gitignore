@@ -127,3 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+spotting_GUI/.vscode/settings.json
