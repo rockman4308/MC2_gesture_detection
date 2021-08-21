@@ -25,6 +25,10 @@ jupyder notebook for testing data analyzation.
 * Loading test data from `testData` folder 
 * Ploting PRcurve and confusion matrics.
 
+## `spotting_GUI`
+For cutting the gesture visualization with training data and testing data by GUI made by tkinter.
+
+
 
 # Utity Code
 
