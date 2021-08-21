@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter.filedialog import askdirectory
 import os
-from LIB.FOLDER import Folder
+from FOLDER import Folder
 from PIL import Image, ImageTk
 import matplotlib.pyplot as plt
 
