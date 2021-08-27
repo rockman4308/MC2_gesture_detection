@@ -1,7 +1,7 @@
 
 import numpy as np
 import time
-from serial_plot import serialPlot
+from serial_usb import serialUSB
 from test import Gesture_Detection
 
 class Detection():

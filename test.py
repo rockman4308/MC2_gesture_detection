@@ -20,9 +20,9 @@ class Gesture_Detection():
     def __init__(self,model_name,windows_size=128):
         self.windows_size = windows_size
         # self.model = load_model(f"./saveModel/{model_name}.h5",custom_objects={'focal_loss':focal_loss,'Index_L1_loss':Index_L1_loss})
-        # self.model = load_model(f"./saveModel/{model_name}",custom_objects={'focal_loss':focal_loss,'Index_L1_loss':Index_L1_loss})
-        # self.modelx = CtDetDecode(self.model)
-        self.modelx = load_model(f"./saveModel/{model_name}")
+        self.model = load_model(f"./saveModel/{model_name}",custom_objects={'focal_loss':focal_loss,'Index_L1_loss':Index_L1_loss})
+        self.modelx = CtDetDecode(self.model)
+        # self.modelx = load_model(f"./saveModel/{model_name}")
 
     # def predict(self,g_p):
     #     raw_result = self.model.predict(g_p.reshape(1,100,3))

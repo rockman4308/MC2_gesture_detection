@@ -20,7 +20,7 @@ from process import Gesture_Data
 from loss import focal_loss,Index_L1_loss
 
 from test import Gesture_Detection
-from serial_plot import serialPlot
+from serial_usb import serialUSB
 
 
 class Ani_plot():
