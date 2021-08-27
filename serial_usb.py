@@ -23,13 +23,17 @@ class serialUSB:
 
         # self.filter
  
-        print('Trying to connect to: ' + str(serialPort) + ' at ' + str(serialBaud) + ' BAUD.')
+        self._connect()
+    
+
+    def _connect(self):
+        print('Trying to connect to: ' + str(self.serialPort) + ' at ' + str(self.serialBaud) + ' BAUD.')
         try:
-            self.serialConnection = serial.Serial(serialPort, serialBaud, timeout=4)
-            print('Connected to ' + str(serialPort) + ' at ' + str(serialBaud) + ' BAUD.')
+            self.serialConnection = serial.Serial(self.serialPort, self.serialBaud, timeout=4)
+            print('Connected to ' + str(self.serialPort) + ' at ' + str(self.serialBaud) + ' BAUD.')
         except:
-            print("Failed to connect with " + str(serialPort) + ' at ' + str(serialBaud) + ' BAUD.')
- 
+            print("Failed to connect with " + str(self.serialPort) + ' at ' + str(self.serialBaud) + ' BAUD.')
+
     def readSerialStart(self):
         if self.thread == None:
             self.thread = Thread(target=self.backgroundThread)
@@ -50,16 +54,19 @@ class serialUSB:
         self.serialConnection.reset_input_buffer()
         print("start run")
         while (self.isRun):
-            check = self.serialConnection.read().decode("ISO-8859-1") # Bluetooth 接收與解譯
-            # print(check)
-            if check == 'S':
-                for i in range(self.dataInNum):
-                    raw = self.serialConnection.read(2)
-                    value = int.from_bytes(raw, byteorder='little', signed=True) * -1
-                    self.rawData[i] = value
-                    self.data[i].append(value)
-                self.isReceiving = True
-                # print(self.rawData)
+            try:
+                check = self.serialConnection.read().decode("ISO-8859-1") # Bluetooth 接收與解譯
+                # print(check)
+                if check == 'S':
+                    for i in range(self.dataInNum):
+                        raw = self.serialConnection.read(2)
+                        value = int.from_bytes(raw, byteorder='little', signed=True) * -1
+                        self.rawData[i] = value
+                        self.data[i].append(value)
+                    self.isReceiving = True
+                    # print(self.rawData)
+            except IOError as exc:
+                self._connect()
     
 
     def close(self):

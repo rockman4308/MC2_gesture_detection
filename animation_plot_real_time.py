@@ -124,7 +124,11 @@ class Ani_plot():
         
         end_time =  time.perf_counter()
         print('total {0:.7f}'.format(end_time - self.previousTimer))
-        self.FPS_text.set_text("FPS = {:.0f}".format(1/(end_time - self.previousTimer)))
+        if predict_data['class'] != 0:
+            self.FPS_text.set_text("FPS = {:.0f} , Predict gesture : {}".format(1/(end_time - self.previousTimer) , predict_data['class']+1 ))
+        else:
+            self.FPS_text.set_text("FPS = {:.0f} ".format(1/(end_time - self.previousTimer)))
+        
         self.previousTimer = end_time
 
         # p_gvline = self.prd_data_plot['gbound']
@@ -243,7 +247,7 @@ if __name__ == "__main__":
     maxPlotLength = windows_size
     dataNumBytes = 4        # number of bytes of 1 data point
     dataInNum = 3
-    s = serialPlot(portName, baudRate, maxPlotLength, dataNumBytes,dataInNum)   # initializes all required variables
+    s = serialUSB(portName, baudRate, maxPlotLength, dataNumBytes,dataInNum)   # initializes all required variables
     s.readSerialStart()                                               # starts background thread
 
     ani = Ani_plot(model_name,s,windows_size=windows_size)

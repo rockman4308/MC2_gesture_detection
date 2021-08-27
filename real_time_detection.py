@@ -69,7 +69,7 @@ def main():
     maxPlotLength = windows_size
     dataNumBytes = 4        # number of bytes of 1 data point
     dataInNum = 3
-    s = serialPlot(portName, baudRate, maxPlotLength, dataNumBytes,dataInNum)   # initializes all required variables
+    s = serialUSB(portName, baudRate, maxPlotLength, dataNumBytes,dataInNum)   # initializes all required variables
     s.readSerialStart() 
     try:
         dect = Detection(model=model_name,SerialData=s)
